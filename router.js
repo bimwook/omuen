@@ -33,7 +33,9 @@ router.createHandler = function(opt){
     }
     response.end();
   };
-  ret.doPost = typeof(opt.doPost)=="function"? opt.doPost : function(request, response, data){this.doGet(request, response, data)};
+  ret.doPost = typeof(opt.doPost)=="function"? opt.doPost : function(request, response, data){
+    this.doGet(request, response, data);
+  };
   ret.doCreate = typeof(opt.doCreate)=="function"? opt.doCreate : function(){};
   ret.doDestroy = typeof(opt.doDestroy)=="function"? opt.doDestroy : function(){};
   ret.items = {};
