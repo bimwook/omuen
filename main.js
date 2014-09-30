@@ -22,7 +22,6 @@ cache.addItem("load.do", function(request, response){
 bin.addItem("cache", cache);
 
 var server = http.createServer(function (request, response) {
-  //console.log(request);
   router.handler(request, response);
 });
 
