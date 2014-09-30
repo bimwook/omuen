@@ -1,5 +1,5 @@
-var muen = require('./modules/bimwook/muen');
-var router = require('./modules/bimwook/router');
+var muen = require('./muen');
+var router = require('./router');
 var http = require('http');
 var PORT = 11520;
 var bin = router.root.bin;
