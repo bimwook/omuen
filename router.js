@@ -134,7 +134,7 @@ router.root.addItem("bin", router.createHandler({
     doCreate: function(){
       this.addItem("now.do", router.createHandler({
         doGet: function(request, response){
-          response.end(muen.now());
+          response.end(router.now());
         }
       }));
       this.addItem("about.do", router.createHandler({
