@@ -1,21 +1,39 @@
-var muen = require('./muen');
 var url = require('url');
 var fs = require('fs');
 var path = require('path');
+var qs = require('querystring');
 
 var router = {};
+router.now = function(format){
+  var d = new Date();
+  var ret = format;
+  if (!(typeof (ret) == "string"))
+  {
+    //ret = "yyyy-mm-dd hh:nn:ss.zzz";
+    ret = "yyyy-mm-dd hh:nn:ss";
+  }
+  return ret
+    .replace(/yyyy/ig, d.getFullYear())
+    .replace(/mm/ig, ("00" + (d.getMonth() + 1)).slice(-2))
+    .replace(/dd/ig, ("00" + d.getDate()).slice(-2))
+    .replace(/hh/ig, ("00" + d.getHours()).slice(-2))
+    .replace(/nn/ig, ("00" + d.getMinutes()).slice(-2))
+    .replace(/ss/ig, ("00" + d.getSeconds()).slice(-2))
+    .replace(/zzz/ig, ("000" + d.getMilliseconds()).slice(-3))  
+};
+
 router.createHandler = function(opt){
   var ret = {};
   var opt = opt ||{};
   ret.name = "";
-  ret.doGet = typeof(opt.doGet)=="function"? opt.doGet : function(request, response){
+  ret.doGet = typeof(opt.doGet)=="function"? opt.doGet : function(request, response, data){
     response.write("Index Of " + this.name + "\r\n");
     for(var k in this.items){
       response.write(k + "\r\n");
     }
     response.end();
   };
-  ret.doPost = typeof(opt.doPost)=="function"? opt.doPost : function(request, response, data){this.doGet(request, response)};
+  ret.doPost = typeof(opt.doPost)=="function"? opt.doPost : function(request, response, data){this.doGet(request, response, data)};
   ret.doCreate = typeof(opt.doCreate)=="function"? opt.doCreate : function(){};
   ret.doDestroy = typeof(opt.doDestroy)=="function"? opt.doDestroy : function(){};
   ret.items = {};
@@ -138,21 +156,25 @@ router.handler = function(request, response){
   var h = this.root.getHandler(path.slice(1));
 
   if(h){
+    var data = {querystring:null, form: null};
+    data.querystring = qs.parse(address.query);
     response.writeHead(200, {
       'Server' : 'node.js',
-      'X-Powered-By' : 'router v0.0.1'
+      'X-Powered-By' : 'router v0.0.1',
+      'Content-Type' : 'text/plain; charset=UTF-8'
     });
     switch(request.method){
       case "GET": {
-        h.doGet(request, response);
+        h.doGet(request, response, data);
         break;
       }
       case "POST" :{
-        var data = "";
+        var buffer = "";
         request.on("data", function(chunk){
-          data += chunk;
+          buffer += chunk;
         });
-        request.on("end", function(){    
+        request.on("end", function(){   
+          data.form = qs.parse(buffer);        
           h.doPost(request, response, data);
         })
       
