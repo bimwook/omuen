@@ -3,10 +3,11 @@ router
 
 # How to start? #
 -------
-
+```javascript
 var server = http.createServer(function (request, response) {  
   router.handler(request, response);  
 });  
+```
 
 # How to add a handler #
 
