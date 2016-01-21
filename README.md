@@ -2,7 +2,6 @@ router
 ======
 
 # How to start? #
--------
 ```javascript
 var server = http.createServer(function (request, response) {  
   router.handler(request, response);  
@@ -10,7 +9,7 @@ var server = http.createServer(function (request, response) {
 ```
 
 # How to add a handler #
-
+EZ-MODE:
 ```javascript
 router.root.push("hello.do", function(request, response){  
     var text = "Hello, World!";  
