@@ -10,7 +10,7 @@ var server = http.createServer(function (request, response) {
 ```
 
 # How to add a handler #
-EZ-MODE:
+EZ-MODE: `http://example.com/hello.do`
 ```javascript
 router.root.push("hello.do", function(request, response){  
     var text = "Hello, World!";  
@@ -18,7 +18,9 @@ router.root.push("hello.do", function(request, response){
     response.end(text);  
 });  
 ```
-or with "get" and "post"
+
+
+or with "get" and "post" to `http://example.com/hello.do`
 ```javascript
 router.root.push("hello.do", router.handle({ 
   doGet: function(request, response){ 
@@ -33,7 +35,8 @@ router.root.push("hello.do", router.handle({
   }  
 }));   
 ```
-or with "sub-handler"
+
+or with "sub-handler" `http://example.com/hello/hello-world.do` and `http://example.com/hello/hi-man.do`
 ```javascript
 router.root.push("hello", router.handle({
     doCreate: function(){
