@@ -3,6 +3,7 @@ router
 
 # How to start? #
 ```javascript
+var router = require('router');
 var server = http.createServer(function (request, response) {  
   router.handler(request, response);  
 });  
