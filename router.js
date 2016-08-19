@@ -314,7 +314,7 @@ var diskfiles = router.handle({
     var address = url.parse(request.url);
     var pn = address.pathname;
     var fn = path.join("./", pn);
-    var mine = {
+    var mime = {
       "css" : "text/css",
       "gif" : "image/gif",
       "htm" : "text/html",
@@ -447,7 +447,7 @@ var diskfiles = router.handle({
                 response.end(err);
               } 
               else {
-                var contentType = mine[ext] || "text/plain";
+                var contentType = mime[ext] || "text/plain";
                 response.setHeader('Content-Type', contentType);
                 response.setHeader('Content-Length', Buffer.byteLength(file, 'binary'));
                 response.end(file, "binary");
