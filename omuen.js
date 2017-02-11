@@ -1,6 +1,4 @@
-var fs = require('fs');
 var qs = require('querystring');
-var PATH = require('path');
 var URL = require('url');
 
 var omuen = {};
