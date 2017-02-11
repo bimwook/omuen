@@ -1,0 +1,42 @@
+{
+  "name": "omuen",
+  "description": "router on server",
+  "version": "0.0.10",
+  "keywords": [
+    "http",
+    "router"
+  ],
+  "maintainers": [
+    {
+      "name": "xolor",
+      "email": "xolor@foxmail.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Bamboo",
+      "url": "https://www.bimwook.com/"
+    }
+  ],
+  "dependencies": {},
+  "main": "omuen.js",
+  "_id": "omuen@0.0.10",
+  "scripts": {},
+  "_shasum": "1c40b6c894fac9a602b5136e52c99ddb735fd610",
+  "_from": "omuen@0.0.10",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "xolor",
+    "email": "xolor@foxmail.com"
+  },
+  "dist": {
+    "shasum": "1c40b6c894fac9a602b5136e52c99ddb735fd610",
+    "tarball": "https://registry.npmjs.org/omuen/-/omuen-0.0.10.tgz"
+  },
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/omuen-0.0.10.tgz_1486791800024_0.03236957755871117"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/omuen/-/omuen-0.0.10.tgz"
+}
