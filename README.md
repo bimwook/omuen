@@ -48,6 +48,25 @@ app.push("hello.do", omuen.handle({
 app.listen(10100);
 ```
 
+You can also 
+```javascript
+var omuen = require('omuen');
+var app = omuen.handle(function(request, response){
+  response.end("oMuen, It's works!");
+});
+
+app.get("hello-get.do", function(request, response){ 
+  var data = "[GET] Hello, World!"; 
+  response.end(data); 
+});
+app.post("hello-post.do", function(request, response){  
+  var data = "[POST] Hello, World!";  
+  response.end(data);  
+});   
+app.listen(10100);
+```
+
+
 or with "sub-handler" `http://example.com/hello/hello-world.do` and `http://example.com/hello/hi-man.do`
 ```javascript
 var omuen = require('omuen');
