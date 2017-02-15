@@ -1,7 +1,33 @@
+var fs = require('fs');
 var qs = require('querystring');
+var PATH = require('path');
 var URL = require('url');
 
 var omuen = {};
+
+omuen.reader = function(){
+  var ret = {};
+  ret.buffers = [];
+  ret.length = 0;
+  ret.write = function(buffer){
+    this.buffers.push(buffer);
+    this.length += buffer.length;
+    return this.length;
+  }
+  
+  ret.read = function(){
+    var p = 0;
+    var buffer = new Buffer(this.length);
+    for(var i=0; i<this.buffers.length; i++){
+      var chunk = this.buffers[i];
+      chunk.copy(buffer, p);
+      p+=chunk.length;
+    }
+    return buffer;
+  }
+  return ret;
+};
+
 omuen.now = function(format){
   var d = new Date();
   var ret = format;
@@ -81,28 +107,28 @@ omuen.handle = function(opt){
     var url = URL.parse(request.url);
     var path = url.pathname;
     var h = this.find(path.slice(1))||this;
-
+    
     if(h){
-      var data = {querystring:null, form: null};
-      data.querystring = qs.parse(url.query);
-      response.writeHead(200, {
-        'Server' : 'omuen/1.0',
-        'X-Powered-By' : 'omuen v0.0.1',
-        'Content-Type' : 'text/plain; charset=UTF-8'
-      });
+      request.data = {querystring:null, form: null};
+      request.data.querystring = qs.parse(url.query);
+      response.statusCode = 200;
+      response.setHeader('Server', 'omuen/1.0');
+      response.setHeader('X-Powered-By', 'omuen v0.0.1');
+      response.setHeader('Content-Type', 'text/plain; charset=UTF-8');
       switch(request.method){
         case "GET": {
-          h.doGet(request, response, data);
+          h.doGet(request, response, request.data);
           break;
         }
         case "POST" :{
           var buffer = "";
+          var reader = omuen.reader();
           request.on("data", function(chunk){
-            buffer += chunk;
+            reader.write(chunk);
           });
-          request.on("end", function(){   
-            data.form = qs.parse(buffer);        
-            h.doPost(request, response, data);
+          request.on("end", function(){
+            request.data.form = qs.parse((reader.read()||"").toString());        
+            h.doPost(request, response, request.data);
           })
         
           break;
