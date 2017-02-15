@@ -1,7 +1,7 @@
 {
   "name": "omuen",
   "description": "router on server",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "keywords": [
     "http",
     "router"
@@ -28,9 +28,9 @@
     "url": "https://github.com/bimwook/omuen/issues"
   },
   "homepage": "https://github.com/bimwook/omuen",
-  "_id": "omuen@0.0.15",
+  "_id": "omuen@0.0.16",
   "scripts": {},
-  "_shasum": "290fb0d9e0140f2932f5d6c7767acbf15a692155",
+  "_shasum": "c8d62ab42ecb11ca105184e1903b5ee26a42df94",
   "_from": "omuen@",
   "_npmVersion": "1.4.28",
   "_npmUser": {
@@ -38,13 +38,13 @@
     "email": "xolor@foxmail.com"
   },
   "dist": {
-    "shasum": "290fb0d9e0140f2932f5d6c7767acbf15a692155",
-    "tarball": "https://registry.npmjs.org/omuen/-/omuen-0.0.15.tgz"
+    "shasum": "c8d62ab42ecb11ca105184e1903b5ee26a42df94",
+    "tarball": "https://registry.npmjs.org/omuen/-/omuen-0.0.16.tgz"
   },
   "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/omuen-0.0.15.tgz_1486997242142_0.48060160246677697"
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/omuen-0.0.16.tgz_1487129339797_0.7777856839820743"
   },
   "directories": {},
-  "_resolved": "https://registry.npmjs.org/omuen/-/omuen-0.0.15.tgz"
+  "_resolved": "https://registry.npmjs.org/omuen/-/omuen-0.0.16.tgz"
 }
